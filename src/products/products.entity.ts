@@ -5,16 +5,16 @@ export class Products extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ length: 100 })
+    @Column('varchar', { length: 100 })
     handle: string;
 
-    @Column({ length: 100 })
+    @Column('varchar', { length: 100 })
     title: string;
 
-    @Column({ length: 1000,  nullable: true })
+    @Column('varchar', { length: 1000 })
     description: string;
 
-    @Column('int')
+    @Column('bigint')
     sku: number;
 
     @Column('float')
@@ -23,12 +23,12 @@ export class Products extends BaseEntity {
     @Column('int')
     stock: number;
 
-    @Column('decimal')
+    @Column('int')
     price: number;
 
-    @Column('decimal')
+    @Column('int')
     comparePrice: number;
 
-    @Column({ nullable: true})
+    @Column('bigint')
     barcode: number;
 }
