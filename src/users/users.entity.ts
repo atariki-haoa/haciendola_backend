@@ -5,12 +5,23 @@ export class Users extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 100 })
+  @Column('varchar', { length: 100 })
   username: string;
 
-  @Column({ length: 100 })
+  @Column('varchar', { length: 100 })
   password: string;
 
-  @Column({ length: 1000, nullable: true })
-  image: string;
+  @Column('int')
+  role: UserRole;
+}
+
+export interface IUser extends BaseEntity {
+  username: string;
+  password: string;
+  role: UserRole;
+}
+
+export enum UserRole {
+  Admin = 1,
+  User = 2,
 }
