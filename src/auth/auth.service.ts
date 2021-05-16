@@ -35,7 +35,7 @@ export class AuthService {
           "Authentification error, password missmatch or user doesn't exist",
       };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: "Bearer " + this.jwtService.sign(payload),
     };
   }
 }
