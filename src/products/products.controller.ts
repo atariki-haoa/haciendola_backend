@@ -37,16 +37,16 @@ export class ProductsController {
     @Get(':id')
     @HttpCode(200)
     @ApiResponse({ status: 200, description: 'Object has been find.' })
-    @ApiResponse({ status: 204, description: 'The action has no result.' })
+    @ApiResponse({ status: 400, description: 'Bad request for invalid body values or format.' })
     async GetProduct(@Param('id') id: string) {
         let result = await this.productService.findById(id);
         if (!result)
             throw new HttpException(
                 {
-                    status: HttpStatus.NO_CONTENT,
+                    status: HttpStatus.BAD_REQUEST,
                     error: 'ID maybe incorrect or object not longer exists',
                 },
-                HttpStatus.NO_CONTENT,
+                HttpStatus.BAD_REQUEST,
             );
         return JSON.stringify({
             product: result
@@ -56,7 +56,7 @@ export class ProductsController {
     @Put(':id')
     @HttpCode(200)
     @ApiResponse({ status: 200, description: 'Object has been find.' })
-    @ApiResponse({ status: 204, description: 'The action has no result.' })
+    @ApiResponse({ status: 400, description: 'Bad request for invalid body values or format.' })
     @ApiBody({
         type: [ProductDTO],
         description: 'ProductDTO class implemented for validation.'
@@ -66,10 +66,10 @@ export class ProductsController {
         if (!result)
             throw new HttpException(
                 {
-                    status: HttpStatus.NO_CONTENT,
-                    error: 'ID maybe incorrect or object not longer exists',
+                    status: HttpStatus.BAD_REQUEST,
+                    error: 'Incorrect param value or format.',
                 },
-                HttpStatus.NO_CONTENT,
+                HttpStatus.BAD_REQUEST,
             );
         return JSON.stringify({
             product: result
@@ -79,16 +79,16 @@ export class ProductsController {
     @Delete(':id')
     @HttpCode(200)
     @ApiResponse({ status: 200, description: 'Object has been find.' })
-    @ApiResponse({ status: 204, description: 'The action has no result.' })
+    @ApiResponse({ status: 400, description: 'Bad request for invalid body values or format.' })
     async DeleteProduct(@Param('id') id: string) {
-        let result = await this.productService.findById(id);
+        let result = await this.productService.deleteById(id);
         if (!result)
             throw new HttpException(
                 {
-                    status: HttpStatus.NO_CONTENT,
-                    error: 'ID maybe incorrect or object not longer exists',
+                    status: HttpStatus.BAD_REQUEST,
+                    error: 'Incorrect param value or format.',
                 },
-                HttpStatus.NO_CONTENT,
+                HttpStatus.BAD_REQUEST,
             );
         return JSON.stringify({
             product: result

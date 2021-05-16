@@ -12,7 +12,12 @@ export class ProductsService {
     ) { }
 
     async save(product: ProductDTO): Promise<IProduct> {
-        return await this.productsRepository.save(product);
+        try {
+            return await this.productsRepository.save(product);
+        } catch (err) {
+            console.log(err);
+            return undefined;
+        }
     }
 
     async findById(id: string): Promise<IProduct | undefined> {
@@ -33,7 +38,7 @@ export class ProductsService {
         }
     }
 
-    async modifiedById(id:string, product: ProductDTO): Promise<any | undefined> {
+    async modifiedById(id: string, product: ProductDTO): Promise<any | undefined> {
         try {
             return await this.productsRepository.update(id, product);
         } catch (err) {
@@ -42,7 +47,7 @@ export class ProductsService {
         }
     }
 
-    async deleteById(id:string): Promise<any | undefined> {
+    async deleteById(id: string): Promise<any | undefined> {
         try {
             return await this.productsRepository.delete(id);
         } catch (err) {

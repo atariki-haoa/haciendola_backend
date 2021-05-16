@@ -1,3 +1,4 @@
+import { IsDefined } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 
 @Entity()
