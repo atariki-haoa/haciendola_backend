@@ -1,12 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsDefined, IsEmail, IsString } from 'class-validator';
 import { UserRole } from './users.entity';
 
 export class UserDTO {
   @ApiProperty({
     type: [String],
-    description: 'Only accepts alphanumeric values.', 
-    maximum: 100,
+    description: 'String field there accept alphanumeric fields.', 
+    maximum: 1000,
   } )
+  @IsDefined()
+  @IsEmail()
   username: string;
 
   @ApiProperty({
@@ -14,6 +17,8 @@ export class UserDTO {
     description: 'Match with the username and will be encrypted on DB. Needs almost one special char and number.', 
     maximum: 100,
   } )
+  @IsDefined()
+  @IsString()
   password: string;
 
   @ApiProperty({
