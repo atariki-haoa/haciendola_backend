@@ -27,4 +27,13 @@ export class UsersService {
       return undefined;
     }
   }
+
+  async findById(id: string): Promise<IUser | undefined> {
+    try {
+      return await this.usersRepository.findOne(id);
+    } catch (err) {
+      console.log(err);
+      return undefined;
+    }
+  }
 }

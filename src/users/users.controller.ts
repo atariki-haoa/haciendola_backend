@@ -1,6 +1,7 @@
-import { Body, HttpStatus, Response, Post, ForbiddenException, Res, HttpCode, HttpException } from '@nestjs/common';
+import { Body, HttpStatus, Response, Post, ForbiddenException, Res, HttpCode, HttpException, Get, SetMetadata, Param, UseGuards } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 import { UserDTO } from './user.dto';
 import { UsersService } from './users.service';
 
@@ -13,7 +14,6 @@ export class UsersController {
     @HttpCode(201)
     @ApiResponse({ status: 201, description: 'The record has been successfully created.' })
     @ApiResponse({ status: 400, description: 'Bad request for invalid body values or format.' })
-    @ApiResponse({ status: 500, description: 'Internal error' })
     @ApiBody({
         type: [UserDTO],
         description: 'UserDTO class implemented for validation.'
@@ -44,9 +44,11 @@ export class UsersController {
         }
     }
 
-    async GetData(@Body() user: UserDTO) {
+    @UseGuards(AuthGuard('jwt'))
+    @Get(':id')
+    async GetData(@Param('id') id: string,) {
         try {
-            let result = await this.usersSevice.findByUserName(user.username);
+            let result = await this.usersSevice.findById(id);
             return JSON.stringify({
                 user: result
             });
