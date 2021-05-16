@@ -5,6 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { UserDTO } from './user.dto';
 import { UsersService } from './users.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
@@ -44,7 +45,6 @@ export class UsersController {
         }
     }
 
-    @UseGuards(AuthGuard('jwt'))
     @Get(':id')
     async GetData(@Param('id') id: string,) {
         try {
