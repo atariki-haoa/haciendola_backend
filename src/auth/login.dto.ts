@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { IsDefined, IsString } from "class-validator";
 
 export class LoginDTO {
   @ApiProperty({
@@ -6,6 +7,8 @@ export class LoginDTO {
     description: 'Only accepts alphanumeric values.', 
     maximum: 100,
   } )
+  @IsDefined()
+  @IsString()
   username: string;
 
   @ApiProperty({
@@ -13,5 +16,7 @@ export class LoginDTO {
     description: 'Only accepts alphanumeric values.', 
     maximum: 100,
   } )
+  @IsDefined()
+  @IsString()
   password: string;
 }

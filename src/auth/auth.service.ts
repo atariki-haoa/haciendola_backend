@@ -34,8 +34,10 @@ export class AuthService {
         error:
           "Authentification error, password missmatch or user doesn't exist",
       };
+    const token = this.jwtService.sign(payload);
     return {
-      access_token: "Bearer " + this.jwtService.sign(payload),
+      user,
+      access_token: `Bearer ${token}`,
     };
   }
 }
