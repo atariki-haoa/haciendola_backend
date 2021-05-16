@@ -10,11 +10,9 @@ async function bootstrap() {
     .setTitle('Haciendola Exam')
     .setDescription('Test exam for hiring.')
     .setVersion('1.0')
-    .addTag('products')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
   await app.listen(3000);
 }
 bootstrap();
