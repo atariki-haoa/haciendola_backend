@@ -1,4 +1,3 @@
-import { IsDefined } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 
 @Entity()
@@ -30,7 +29,7 @@ export class Products extends BaseEntity {
     @Column('int')
     comparePrice: number;
 
-    @Column('bigint', { unique: true })
+    @Column('bigint', { unique: true, nullable: true })
     barcode: number;
 }
 
