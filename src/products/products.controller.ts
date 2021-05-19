@@ -110,7 +110,7 @@ export class ProductsController {
                 HttpStatus.NOT_FOUND,
             );
         return JSON.stringify({
-            product: result
+            products: result
         });
     }
 }

@@ -9,7 +9,7 @@ export class LoginDTO {
   } )
   @IsDefined()
   @IsString()
-  username: string;
+  email: string;
 
   @ApiProperty({
     type: [String],

@@ -10,7 +10,7 @@ export class UserDTO {
   } )
   @IsDefined()
   @IsEmail()
-  username: string;
+  email: string;
 
   @ApiProperty({
     type: [String],
@@ -28,4 +28,11 @@ export class UserDTO {
     enum: ['Administrator', 'User']
   } )
   role: UserRole;
+
+  @ApiProperty({
+    type: [Number],
+    description: 'User roles used to authenticate endpoints.', 
+    enum: ['Administrator', 'User']
+  } )
+  username?: string;
 }

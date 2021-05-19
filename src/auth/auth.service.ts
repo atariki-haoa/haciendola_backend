@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const result = await this.validateUser(user.username, user.password);
+    const result = await this.validateUser(user.email, user.password);
     const payload = {
       username: result.username,
       role: result.role,
@@ -35,9 +35,10 @@ export class AuthService {
           "Authentification error, password missmatch or user doesn't exist",
       };
     const token = this.jwtService.sign(payload);
+    user.token = `Bearer ${token}`;
     return {
-      user,
-      access_token: `Bearer ${token}`,
-    };
+        token: `Bearer ${token}`,
+        user,
+      };
   }
 }

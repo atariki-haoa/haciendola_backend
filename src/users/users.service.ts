@@ -15,6 +15,7 @@ export class UsersService {
 
   async save(user: UserDTO):  Promise<IUser | string>{
     try {
+      if (!user.username) user.username = user.email;
       user.password = await bcrypt.hash(user.password, 10);
       return await this.usersRepository.save(user);
     } catch(err) {

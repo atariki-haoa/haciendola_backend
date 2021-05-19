@@ -8,16 +8,20 @@ export class Users extends BaseEntity {
   @Column('varchar', { length: 100, unique: true })
   username: string;
 
+  @Column('varchar', { length: 100, unique: true })
+  email: string;
+
   @Column('varchar', { length: 100 })
   password: string;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   role: UserRole;
 }
 
 export interface IUser extends BaseEntity {
   username: string;
   password: string;
+  email: string;
   role: UserRole;
 }
 
