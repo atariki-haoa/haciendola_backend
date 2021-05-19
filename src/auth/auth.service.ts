@@ -14,6 +14,8 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<IUser | null> {
     try {
       const user: IUser = await this.userService.findByUserName(username);
+      if(!user) return null;
+      
       const check = await bcrypt.compare(pass || '', user.password);
       if (check) return user;
       return null;
@@ -25,14 +27,14 @@ export class AuthService {
 
   async login(user: any) {
     const result = await this.validateUser(user.email, user.password);
-    const payload = {
-      username: result.username,
-      role: result.role,
-    };
-    if (!payload)
+    if (!result)
       return {
         error:
           "Authentification error, password missmatch or user doesn't exist",
+    };
+    const payload = {
+        username: result.username,
+        role: result.role,
       };
     const token = this.jwtService.sign(payload);
     user.token = `Bearer ${token}`;
