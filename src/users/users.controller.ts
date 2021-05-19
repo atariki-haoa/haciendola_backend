@@ -12,32 +12,6 @@ import { IUser } from './users.entity';
 export class UsersController {
     constructor(private usersSevice: UsersService) { }
 
-    @Post('new')
-    @HttpCode(201)
-    @ApiResponse({ status: 201, description: 'The record has been successfully created.' })
-    @ApiResponse({ status: 400, description: 'Bad request for invalid body values or format.' })
-    @ApiBody({
-        type: [UserDTO],
-        description: 'UserDTO class implemented for validation.'
-    })
-    async register(@Body() user: UserDTO) {
-        let result: IUser | string = await this.usersSevice.save(user);
-        if (typeof (result) === "string") {
-            throw new HttpException(
-                {
-                    status: HttpStatus.BAD_REQUEST,
-                    error: result,
-                },
-                HttpStatus.BAD_REQUEST,
-            );
-        }
-        delete result.password;
-        return JSON.stringify({
-            user: result
-        });
-
-    }
-
     @UseGuards(AuthGuard('jwt'))
     @Get('recovery/:username')
     @HttpCode(200)
