@@ -8,7 +8,7 @@ En dicho ecosistema se encuentra:
 * Contenedor con nodeJS para el control del backend
 
 Se utilizo este metodo para evitar instalaciones adicionales, de todos modos en caso de ocuparlo con un entorno propio,
-saltarse el pasos 2 al 5.
+saltarse los pasos 2 al 5.
 
 ## Instalacion
 1. Clonar repositorio
