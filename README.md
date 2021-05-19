@@ -11,10 +11,10 @@ Se utilizo este metodo para evitar instalaciones adicionales, de todos modos en 
 saltarse el pasos 2 al 5.
 
 ## Instalacion
-1- Clonar repositorio
-2- Instalar docker
-3- En carpeta de proyecto correr docker-compose build
-4- En carpeta de proyecto correr docker-compose up
-5- Ingresar al contenedor de NodeJS
-6- npm install
-7- npm start o npm start:dev para watcher y debug.
+1. Clonar repositorio
+2. Instalar docker
+3. En carpeta de proyecto correr docker-compose build
+4. En carpeta de proyecto correr docker-compose up
+5. Ingresar al contenedor de NodeJS
+6. npm install
+7. npm start o npm start:dev para watcher y debug.
